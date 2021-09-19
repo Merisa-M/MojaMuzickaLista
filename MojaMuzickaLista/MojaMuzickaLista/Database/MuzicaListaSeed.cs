@@ -33,6 +33,22 @@ namespace MojaMuzickaLista.Database
 
             };
             modelBuilder.Entity<Pjesme>().HasData(pj);
+            MojaMuzickaLista.Database.Pjesme pjesma = new MojaMuzickaLista.Database.Pjesme()
+            {
+                PjesmaID = 2,
+                NazivPjesme = "naziv pjesme",
+                NazivIzvodjaca = "naziv izvodjaca",
+                Url = "https://www.youtube.com/watch?v=RpyN9pFXUCg&list=RDRpyN9pFXUCg&start_radio=1",
+                DatumUnos = new DateTime(2021, 07, 15),
+                DatumEditovanja = new DateTime(2021, 07, 18),
+                Favorit = true,
+                KateogorijaID = 1,
+                Ocjena = 4
+
+            };
+            modelBuilder.Entity<Pjesme>().HasData(pjesma);
+
+           
 
         }
 

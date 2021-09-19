@@ -32,7 +32,7 @@ namespace MojaMuzickaLista.Services
         }
         public async Task<List<Model.Pjesme>> GetAllPjesmeAsync(CancellationToken cancellationToken)
         {
-            var list = await _context.Pjesme.ToListAsync(cancellationToken);
+            var list = await _context.Pjesme.Include(i=>i.Kategorije).ToListAsync(cancellationToken);
             return _mapper.Map<List<Model.Pjesme>>(list);
         }
         public async Task<Model.Pjesme> Insert(PjesmaAddRequest request,CancellationToken cancellationToken)

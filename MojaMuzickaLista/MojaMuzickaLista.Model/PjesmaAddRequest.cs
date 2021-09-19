@@ -16,6 +16,6 @@ namespace MojaMuzickaLista.Model
         public bool? Favorit { get; set; }
         public DateTime DatumUnos { get; set; }
         public DateTime DatumEditovanja { get; set; }
-        public int KateogorijaID { get; set; }
+        public List<string> Kategorija { get; set; }
     }
 }

@@ -1,6 +1,17 @@
-<button type="button" class="btn btn-outline-success" data-toggle="modal" (click)="open(mymodal)">
-    dodaj pjesmu
-</button>
+<body>
+    <div id="headerDiv" class="table-title">
+        <div class="row">
+          <div class="col-sm-6">
+            <h2>Moja muzička lista</h2>
+          </div>
+          <div class="openn">
+          <a href="#" class="btn btn-primary" data-toggle="modal" (click)="open(mymodal)">
+            Dodaj pjesmu
+          </a>
+        </div>
+        </div>
+      </div>
+
 <div class="table-responsive">
     <table class="table table-striped table-hover ">
         <thead>
@@ -9,59 +20,49 @@
                 <th>Izvodjač</th>
                 <th>URL</th>
                 <th>Ocjena</th>
-                <th scope="col">Favorit</th>
+                <th>Favorit</th>
                 <th>Datum unosa</th>
                 <th>Datum editovanja</th>
                 <th>Kategorija</th>
                 <th>Akcija</th>
-
-
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let dataItem of PjesmeList">
-
                 <td>{{dataItem.nazivPjesme}}</td>
                 <td>{{dataItem.nazivIzvodjaca}}</td>
-                <td>{{dataItem.url}}</td>
+                <td><a href="#" target="_blank">{{dataItem.url}}</a></td>
                 <td>{{dataItem.ocjena}}</td>
-                <td *ngIf="dataItem.favorit==true; else NijeFavorit"><i class="fa fa-check"> </i> Favorit </td>
-                <ng-template #NijeFavorit>
-                    <td> <i class="fa fa-times"> </i> NijeFavorit </td>
+                <td *ngIf="dataItem.favorit==true; else NijeFavorit"><i class="fa fa-check"> </i> DA </td>
+                <ng-template #NijeFavorit><td><i class="fa fa-times"></i> NE </td>
                 </ng-template>
                 <td>{{ dataItem.datumUnos | date: 'dd-MM-yyyy' }}</td>
                 <td>{{ dataItem.datumEditovanja | date: 'dd-MM-yyyy' }}</td>
-                <td>{{dataItem.kateogorijaID}}</td>
-
-                <td>
-              <!-- <a href="#" (click)="urediPjesmu(myModal, dataItem)" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons" style="font-size: 24px;color:#FFC107;">&#xE254;</i></a> 
-              <a  class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons" style="font-size: 24px;color:#E34724;">&#xE872;</i></a> -->
-                </td>
-
+                <td>{{dataItem.Kategorija}}</td>
+                <td id="ikonice"> 
+                    <a href="#"  style="margin-right: 5px;"  (click)="openEditModal(mymodal,dataItem)"> <i class="material-icons" style="font-size: 24px;color:#FFC107;">&#xE254;</i></a>
+                    <a herf="#"  (click)="deletePut(dataItem)"> <i class="material-icons" style="font-size: 24px;color:#E34724;">&#xE872;</i> </a><td>
             </tr>
         </tbody>
     </table>
 </div>
+</body>
 
 <ng-template #mymodal let-modal>
-
     <div class="modal-header">
-
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-
+     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span></button>
     </div>
     <div class="modal-body">
-
         <div class="row">
             <div class="col-md-12">
-
+                <form autocomplete="off" #createForm="ngForm">
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="nazivPjesme">Naziv pjesme</label>
                     <div class="col-md-9">
                         <input type="text" id="nazivPjesme" name="nazivPjesme" class="form-control"
-                            placeholder="Naziv pjesme">
+                            placeholder="Naziv pjesme" [(ngModel)]="pjesma.nazivPjesme" #nazivPjesme="ngModel">
+                          
                         <!-- <span *ngIf="nazivPjesme.errors?.required && nazivDokumenta.touched">Polje je obavezno za unos</span>
                              -->
                     </div>
@@ -70,8 +71,9 @@
                     <label class="col-md-3 col-form-label" for="nazivIzvodjaca">Naziv izvodjaca</label>
                     <div class="col-md-9">
                         <input type="text" id="nazivIzvodjaca" name="nazivIzvodjaca" class="form-control"
-                            placeholder="Naziv izvodjaca">
-                        <!-- <span *ngIf="nazivPjesme.errors?.required && nazivDokumenta.touched">Polje je obavezno za unos</span>
+                            placeholder="Naziv izvodjaca"[(ngModel)]="pjesma.nazivIzvodjaca" required #nazivIzvodjaca="ngModel">
+                        
+                            <!-- <span *ngIf="nazivPjesme.errors?.required && nazivDokumenta.touched">Polje je obavezno za unos</span>
                              -->
                     </div>
                 </div>
@@ -79,15 +81,24 @@
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="url">URL</label>
                     <div class="col-md-9">
-                        <input type="text" id="url" name="url" class="form-control" placeholder="url pjesme">
+                        <input type="text" id="url" name="url" class="form-control" placeholder="url pjesme"
+                        [(ngModel)]="pjesma.url"
+                        required
+                        #url="ngModel"
+                        >
                         <!-- <span *ngIf="nazivPjesme.errors?.required && nazivDokumenta.touched">Polje je obavezno za unos</span>
                              -->
+                             
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="ocjena">Ocjena</label>
                     <div class="col-md-9">
-                        <input type="number" id="ocjena" name="ocjena" class="form-control" placeholder="ocjena">
+                        <input type="number" id="ocjena" name="ocjena" class="form-control" placeholder="ocjena"
+                        [(ngModel)]="pjesma.ocjena"
+                        required
+                        #ocjena="ngModel"
+                        >
                         <!-- <span *ngIf="nazivPjesme.errors?.required && nazivDokumenta.touched">Polje je obavezno za unos</span>
                              -->
                     </div>
@@ -98,9 +109,12 @@
                     <div class="col-md-9 col-form-label">
                         <div class="form-check">
                             <label>
-                                <input class="form-check-input" type="checkbox" name="favorit" id="favorit">
-                                <span *ngIf="PjesmeList.status">DA</span>
-                                <span *ngIf="!PjesmeList.status">NE</span>
+                                <input class="form-check-input" type="checkbox" name="favorit" id="favorit"
+                                [(ngModel)]="pjesma.favorit"
+                    #favorit="ngModel"
+                                >
+                                <span *ngIf="!PjesmeList.status">DA</span>
+                                <span *ngIf="PjesmeList.status">NE</span>
                             </label>
 
                         </div>
@@ -110,41 +124,38 @@
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="datumUnos">Datum unosa</label>
                     <div class="col-md-9">
-
-
-                        <input id="datumUnos" name="datumUnos" class="form-control" placeholder="Datum unosa">
+                        <input id="datumUnos" name="datumUnos" class="form-control" placeholder="Datum unosa"
+                        [(ngModel)]="pjesma.datumUnos"
+                        required
+                        #datumUnos="ngModel"
+                        >
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="datumEditovanja">Datum editovanja</label>
                     <div class="col-md-9">
-
-
                         <input id="datumEditovanja" name="datumEditovanja" class="form-control"
-                            placeholder="Datum editovanja">
+                            placeholder="Datum editovanja"[(ngModel)]="pjesma.datumEditovanja"#datumEditovanja="ngModel">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="kateogorije" >Kategorija</label>
                     <div class="col-md-9">
-                      <select id="kateogorije" name="kateogorije" class="form-control">
+                      <select id="kateogorije" name="kateogorije" class="form-control" [(ngModel)]="pjesma.kateogorije">
                         <option value="" selected >--Odaberite--</option>
-                        <option  *ngFor="let k of kateogorije "></option>
-                        
+                        <option *ngFor="let k of kategorije"value="{{k.kategorijaID}}"  ng-selected="k.nazivKategorije=='Kategorija'"></option>                
                       </select>
                       
                     </div>
                   </div>
+                </form>
             </div>
         </div>
     </div>
-    <div class="modal-footer">
-  
-        
-        <!-- <button type="submit" class="btn btn-sm btn-primary"  [disabled]="!createForm.valid"><i class="fa fa-dot-circle-o"></i> Sačuvaj</button>-->
+    <div class="modal-footer">        
+         <!-- <button type="submit" class="btn btn-sm btn-primary"  (click)="save()"  [disabled]="!createForm.valid"><i class="fa fa-dot-circle-o"></i> Sačuvaj</button>
+         -->
          <button type="reset" class="btn btn-sm btn-danger" (click)="modal.close('Save click')"><i class="fa fa-ban"></i> Odustani</button>
-      
-     
         </div> 
 
 </ng-template>

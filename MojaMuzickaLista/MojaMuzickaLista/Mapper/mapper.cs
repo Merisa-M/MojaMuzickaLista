@@ -14,7 +14,7 @@ namespace MojaMuzickaLista.Mapper
 
             CreateMap<Database.Pjesme, Model.Pjesme>();
             CreateMap<Database.Pjesme,PjesmaAddRequest>().ReverseMap();
-            CreateMap<Database.Kategorije, Model.Pjesme>();
+            CreateMap<Database.Kategorije, Model.Kategorije>();
         }
     }
 

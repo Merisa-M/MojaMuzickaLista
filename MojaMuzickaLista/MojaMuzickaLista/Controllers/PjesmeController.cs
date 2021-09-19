@@ -46,7 +46,7 @@ namespace MojaMuzickaLista.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+       
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id,PjesmaAddRequest request, CancellationToken cancellationToken)
         {
@@ -59,6 +59,7 @@ namespace MojaMuzickaLista.Controllers
                 return BadRequest(ex.Message);
             }
         }
+       
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id,CancellationToken cancellationToken)
         {
