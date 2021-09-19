@@ -10,7 +10,7 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./pjesma.component.css']
 })
 export class PjesmaComponent implements OnInit {
- 
+  kategorije:any[]=[];
   constructor(private SharedService:  SharedService,  private modalService:NgbModal,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService) { }
@@ -21,12 +21,10 @@ export class PjesmaComponent implements OnInit {
   }
   PjesmeList:any=[];
   isDtInitialized:boolean = false;
-  kategorije:any[]=[];
-  pjesma:any={};
+  pjesma:any=[];
   closeResult: string;
   modalOptions:NgbModalOptions;
-  kateogorije:any[]=[];
-
+ 
 
   open(content:any) {
     this.PjesmeList={};
@@ -56,7 +54,7 @@ export class PjesmaComponent implements OnInit {
     });
   }
   deletePut(item:any){
-    if(confirm('Are you sure??')){
+    if(confirm('Da li ste sigurni?')){
       this.SharedService.delete(item.pjesmaID).subscribe(data=>{
         alert(data.toString());
         this.GetAll();
@@ -71,65 +69,9 @@ export class PjesmaComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
-  //save() {
-
-
-    //var d1 = new Date(this.pjesma.datumEditovanja);
-    
-
-    //this.predmet.datumPocetka=d1.toDateString();
-    
-
-//     if(this.pjesma.pjesmaID){
-
-//       this.spinner.show();
-
-      
-//       this.SharedService
-//           .update("Pjesma/"+ this.pjesma.pjesmaID, this.pjesma)
-//           .pipe(first())
-//           .subscribe(
-//             (data) => {
-//               this.GetAll();
-//               this.pjesma = {};
-
-//              this.spinner.hide();
-//               this.modalService.dismissAll();
-//                this.toastr.success("Data is successfully saved!", "Success!");
-//             },
-//             (error) => {
-//                this.spinner.hide();
-//                this.toastr.error("Server error, please ", "Error!");
-//             }
-//           );
-
-
-//     }
-
-
-// else{
-   
-//   this.spinner.show();
-
-//     this.SharedService
-//         .save("Pjesma", this.pjesma)
-//         .pipe(first())
-//         .subscribe(
-//           (data) => {
-//             this.GetAll();
-//             this.pjesma = {};
-
-//            this.spinner.hide();
-//             this.modalService.dismissAll();
-//              this.toastr.success("Data is successfully saved!", "Success!");
-//           },
-//           (error) => {
-//              this.spinner.hide();
-//              this.toastr.error("Server error, please ", "Error!");
-//           }
-//         );
-//     }
-  
-//   }
+ 
+  private copyObj(order:any) {
+    return JSON.parse(JSON.stringify(order));
+  }
 
 }

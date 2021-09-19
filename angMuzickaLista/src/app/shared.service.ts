@@ -30,7 +30,7 @@ export class SharedService {
         return this.http.delete(this.apiUrl+'/Pjesme/'+val);
       }
       save(url: string, order: any) {
-        return this.http.post(`${environment.apiUrl}${url}`, order);
+        return this.http.post(this.apiUrl+'/Pjesme/', order);
        }
       
        update(url: string, order: any) {

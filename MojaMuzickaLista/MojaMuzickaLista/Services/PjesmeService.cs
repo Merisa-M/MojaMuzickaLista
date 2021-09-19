@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MojaMuzickaLista.Database;
 using MojaMuzickaLista.Model;
@@ -67,17 +68,7 @@ namespace MojaMuzickaLista.Services
                 entity = entity.Where(x => x.NazivPjesme.Contains(request.NazivPjesme)).OrderBy(c => c.NazivPjesme);
             }
             var list = await entity.ToListAsync();
-
             return _mapper.Map<List<Model.Pjesme>>(list);
-            //var query = _context.Pjesme.Where(p => p.NazivPjesme.ToLower().Trim().StartsWith(request.NazivPjesme.ToLower().Trim()) 
-            //   || string.IsNullOrWhiteSpace(request.NazivPjesme));
-
-            //var count = await query.CountAsync(cancellationToken);
-            //var list = await query.ToListAsync(cancellationToken);
-            //var data = _mapper.Map<List<Model.Pjesme>>(list);
-
-            //return _mapper.Map<List<Model.Pjesme>>(data);
-
         }
     }
 }

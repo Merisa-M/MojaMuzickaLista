@@ -59,7 +59,6 @@ namespace MojaMuzickaLista.Controllers
                 return BadRequest(ex.Message);
             }
         }
-       
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id,CancellationToken cancellationToken)
         {
@@ -74,7 +73,7 @@ namespace MojaMuzickaLista.Controllers
         }
         [Route("GetByFiltersAsync")]
         [HttpGet]
-        public async Task<IActionResult> GetByFiltersAsync(SearchPjesmaRequest request)
+        public async Task<IActionResult> GetByFiltersAsync([FromQuery]SearchPjesmaRequest request)
         {
             try
             {
@@ -85,6 +84,5 @@ namespace MojaMuzickaLista.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
     }
 }

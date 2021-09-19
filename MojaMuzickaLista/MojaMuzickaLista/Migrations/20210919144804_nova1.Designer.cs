@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MojaMuzickaLista.Database;
 
 namespace MojaMuzickaLista.Migrations
 {
     [DbContext(typeof(MuzickaListaContext))]
-    partial class MuzickaListaContextModelSnapshot : ModelSnapshot
+    [Migration("20210919144804_nova1")]
+    partial class nova1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,10 +59,7 @@ namespace MojaMuzickaLista.Migrations
                     b.Property<bool?>("Favorit")
                         .HasColumnType("bit");
 
-                    b.Property<int>("KategorijaID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("KateogorijaID")
+                    b.Property<int>("KateogorijaID")
                         .HasColumnType("int");
 
                     b.Property<string>("NazivIzvodjaca")
@@ -88,7 +87,7 @@ namespace MojaMuzickaLista.Migrations
                             DatumEditovanja = new DateTime(2021, 7, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DatumUnos = new DateTime(2021, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Favorit = true,
-                            KategorijaID = 1,
+                            KateogorijaID = 1,
                             NazivIzvodjaca = "naziv izvodjaca",
                             NazivPjesme = "naziv pjesme",
                             Ocjena = 4,
@@ -100,7 +99,7 @@ namespace MojaMuzickaLista.Migrations
                             DatumEditovanja = new DateTime(2021, 7, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DatumUnos = new DateTime(2021, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Favorit = true,
-                            KategorijaID = 1,
+                            KateogorijaID = 1,
                             NazivIzvodjaca = "naziv izvodjaca",
                             NazivPjesme = "naziv pjesme",
                             Ocjena = 4,
@@ -112,7 +111,9 @@ namespace MojaMuzickaLista.Migrations
                 {
                     b.HasOne("MojaMuzickaLista.Database.Kategorije", "Kategorije")
                         .WithMany()
-                        .HasForeignKey("KateogorijaID");
+                        .HasForeignKey("KateogorijaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Kategorije");
                 });

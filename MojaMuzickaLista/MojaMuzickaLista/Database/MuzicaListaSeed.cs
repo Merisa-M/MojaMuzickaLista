@@ -28,7 +28,7 @@ namespace MojaMuzickaLista.Database
                 DatumUnos= new DateTime(2021, 07, 15),
                 DatumEditovanja = new DateTime(2021, 07, 18),
                 Favorit=true,
-                KateogorijaID=1,
+                KategorijaID = 1,
                 Ocjena=4
 
             };
@@ -42,7 +42,7 @@ namespace MojaMuzickaLista.Database
                 DatumUnos = new DateTime(2021, 07, 15),
                 DatumEditovanja = new DateTime(2021, 07, 18),
                 Favorit = true,
-                KateogorijaID = 1,
+                KategorijaID = 1,
                 Ocjena = 4
 
             };

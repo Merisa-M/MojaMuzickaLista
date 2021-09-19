@@ -30,8 +30,5 @@ namespace MojaMuzickaLista.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-
-
     }
 }

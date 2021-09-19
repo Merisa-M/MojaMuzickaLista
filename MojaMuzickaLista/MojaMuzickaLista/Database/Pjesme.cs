@@ -24,7 +24,7 @@ namespace MojaMuzickaLista.Database
 
         [ForeignKey("KateogorijaID")]
         public Kategorije Kategorije { get; set; }
-        public int KateogorijaID { get; set; }
+        public int KategorijaID { get; set; }
 
 
 
