@@ -22,7 +22,7 @@ namespace MojaMuzickaLista.Database
         public DateTime DatumEditovanja { get; set; }
 
 
-        [ForeignKey("KateogorijaID")]
+        [ForeignKey("KategorijaID")]
         public Kategorije Kategorije { get; set; }
         public int KategorijaID { get; set; }
 

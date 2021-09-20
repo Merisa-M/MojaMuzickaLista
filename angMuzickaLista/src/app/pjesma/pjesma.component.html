@@ -35,7 +35,7 @@
                 </ng-template>
                 <td>{{ dataItem.datumUnos | date: 'dd-MM-yyyy' }}</td>
                 <td>{{ dataItem.datumEditovanja | date: 'dd-MM-yyyy' }}</td>
-                <td>{{ dataItem.kategorije}}</td>
+                <td>{{dataItem.kategorije.nazivKategorije}}</td>
                 <td id="ikonice"> 
                     <a href="#"  style="margin-right: 5px;"  (click)="openEditModal(mymodal,dataItem)"> <i class="material-icons" style="font-size: 24px;color:#FFC107;">&#xE254;</i></a>
                     <a herf="#"  (click)="deletePut(dataItem)"> <i class="material-icons" style="font-size: 24px;color:#E34724;">&#xE872;</i> </a><td>
@@ -123,7 +123,7 @@
         </div>
     </div>
     <div class="modal-footer">        
-         <!-- <button type="submit" class="btn btn-sm btn-primary"  (click)="save()"  [disabled]="!createForm.valid"><i class="fa fa-dot-circle-o"></i> Sačuvaj</button>      -->
+         <button type="submit" class="btn btn-sm btn-primary"  (click)="save()"  [disabled]="!createForm.valid"><i class="fa fa-dot-circle-o"></i> Sačuvaj</button>   
          <button type="reset" class="btn btn-sm btn-danger" (click)="modal.close('Save click')"><i class="fa fa-ban"></i> Odustani</button>
         </div> 
 </ng-template>

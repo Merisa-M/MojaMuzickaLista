@@ -10,7 +10,7 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./pjesma.component.css']
 })
 export class PjesmaComponent implements OnInit {
-  kategorije:any[]=[];
+  kategorije: any[] = [];
   constructor(private SharedService:  SharedService,  private modalService:NgbModal,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService) { }
@@ -43,14 +43,16 @@ export class PjesmaComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
-  GetAll(){
-    this.SharedService.getPjesmeList().subscribe(data=>{
-      this.PjesmeList=data;
+  GetAll() {
+    this.SharedService.getPjesmeList().subscribe(data => {
+      console.log(data);
+      this.PjesmeList = data;
     });
   }
-  GetKategorije(){
-    this.SharedService.getKategorije().subscribe(data=>{
-      this.kategorije=data;
+  GetKategorije() {
+    this.SharedService.getKategorije().subscribe(data => {
+      console.log(data);
+      this.kategorije = data;
     });
   }
   deletePut(item:any){
@@ -70,8 +72,65 @@ export class PjesmaComponent implements OnInit {
     });
   }
  
-  private copyObj(order:any) {
-    return JSON.parse(JSON.stringify(order));
+  save() {
+
+
+    if(this.pjesma.pjesmaID){
+
+      this.spinner.show();
+
+      
+      this.SharedService
+          .update(this.pjesma.pjesmaID, this.pjesma)
+          .pipe(first())
+          .subscribe(
+            (data) => {
+
+              this.GetAll();
+
+              this.PjesmeList = {};
+
+              
+             this.spinner.hide();
+              this.modalService.dismissAll();
+               this.toastr.success("Data is successfully saved!", "Success!");
+
+            },
+            (error) => {
+               this.spinner.hide();
+               this.toastr.error("Server error, please ", "Error!");
+            }
+          );
+
+
+    }
+
+
+else{
+   
+  this.spinner.show();
+
+    this.SharedService
+        .save("pjesma", this.pjesma)
+        .pipe(first())
+        .subscribe(
+          (data) => {
+
+            this.GetAll();
+            this.pjesma = {};
+
+           this.spinner.hide();
+            this.modalService.dismissAll();
+             this.toastr.success("Data is successfully saved!", "Success!");
+          },
+          (error) => {
+             this.spinner.hide();
+             this.toastr.error("Server error, please ", "Error!");
+          }
+        );
+    }
+  
   }
+
 
 }

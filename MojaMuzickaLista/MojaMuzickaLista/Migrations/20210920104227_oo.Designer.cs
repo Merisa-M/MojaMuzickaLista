@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MojaMuzickaLista.Database;
 
 namespace MojaMuzickaLista.Migrations
 {
     [DbContext(typeof(MuzickaListaContext))]
-    partial class MuzickaListaContextModelSnapshot : ModelSnapshot
+    [Migration("20210920104227_oo")]
+    partial class oo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
