@@ -4,6 +4,7 @@ import { SharedService } from '../shared.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from "ngx-spinner";
 import { first } from 'rxjs/operators';
+
 @Component({
   selector: 'app-pjesma',
   templateUrl: './pjesma.component.html',
@@ -71,35 +72,19 @@ export class PjesmaComponent implements OnInit {
   }
  
   save() {
-    
-
-    var d1 = new Date(this.pjesma.datumUnos);
-    this.pjesma.datumUnos=d1.toDateString();
-    var d2 = new Date(this.pjesma.datumEditovanja);
-    this.pjesma.datumEditovanja=d2.toDateString();
-
+  
     if(this.pjesma.pjesmaID){
-
       this.spinner.show();
-
-      console.log(this.pjesma.pjesmaID);
      
-      this.pjesma.kategorijaID=1;
-      console.log(this.pjesma);
       this.SharedService
-          .update(this.pjesma.pjesmaID,this.pjesma)
+          .update(this.pjesma.pjesmaID, this.pjesma)
           .pipe(first())
           .subscribe(
             (data) => {
-
-              this.GetAll();
-
-              this.pjesma = {};
-
-              
-             this.spinner.hide();
-              this.modalService.dismissAll();
-               this.toastr.success("Data is successfully saved!", "Success!");
+            this.pjesma = {};  
+            this.spinner.hide();
+            this.modalService.dismissAll();
+            this.toastr.success("Data is successfully saved!", "Success!");
 
             },
             (error) => {
@@ -107,13 +92,8 @@ export class PjesmaComponent implements OnInit {
                this.toastr.error("Server error, please ", "Error!");
             }
           );
-
-
     }
-
-
 else{
-   
   this.spinner.show();
 
     this.SharedService
@@ -121,13 +101,11 @@ else{
         .pipe(first())
         .subscribe(
           (data) => {
-
             this.GetAll();
             this.pjesma = {};
-
-           this.spinner.hide();
+            this.spinner.hide();
             this.modalService.dismissAll();
-             this.toastr.success("Data is successfully saved!", "Success!");
+            this.toastr.success("Data is successfully saved!", "Success!");
           },
           (error) => {
              this.spinner.hide();
@@ -136,4 +114,5 @@ else{
         );
     }
   }
+
 }

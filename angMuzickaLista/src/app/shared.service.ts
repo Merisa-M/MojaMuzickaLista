@@ -13,13 +13,14 @@ export class SharedService {
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       };
-      getPjesmeList():Observable<any[]>{
+      getPjesmeList():Observable<any[]>
+      {
         return this.http.get<any>(this.apiUrl+'/Pjesme');
       }
-     getKategorije():Observable<any[]>{
+     getKategorije():Observable<any[]>
+     {
       return this.http.get<any>(this.apiUrl+'/Kategorije');
     }
-     
       delete(val:any){
         return this.http.delete(this.apiUrl+'/Pjesme/'+val);
       }

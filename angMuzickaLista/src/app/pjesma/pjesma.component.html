@@ -35,9 +35,8 @@
                 </ng-template>
                 <td>{{ dataItem.datumUnos | date: 'dd-MM-yyyy' }}</td>
                 <td>{{ dataItem.datumEditovanja | date: 'dd-MM-yyyy' }}</td>
-                <td>{{dataItem.kategorije.nazivKategorije}}</td>
+                <td>{{ dataItem.kategorije.nazivKategorije}}</td>
                 <td id="ikonice"> 
-
                     <a href="#"  style="margin-right: 5px;"  (click)="openEditModal(mymodal,dataItem)"> <i class="material-icons" style="font-size: 24px;color:#FFC107;">&#xE254;</i></a>
                     <a herf="#"  (click)="deletePut(dataItem)"> <i class="material-icons" style="font-size: 24px;color:#E34724;">&#xE872;</i> </a><td>
             </tr>
@@ -79,7 +78,7 @@
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="ocjena">Ocjena</label>
                     <div class="col-md-9">
-                        <input type="number" id="ocjena" name="ocjena" class="form-control" placeholder="ocjena"
+                        <input type="range" min="1" max="5" id="ocjena" name="ocjena" class="form-control" placeholder="ocjena"
                         [(ngModel)]="pjesma.ocjena" #ocjena="ngModel" [ngModelOptions]="{standalone: true}">
                   </div>
                 </div>
@@ -90,8 +89,8 @@
                             <label>
                                 <input class="form-check-input" type="checkbox" name="favorit" id="favorit"
                                 [(ngModel)]="pjesma.favorit" #favorit="ngModel">
-                                <span *ngIf="!pjesma.favorit">DA</span>
-                                <span *ngIf="pjesma.favorit">NE</span>
+                                <span *ngIf="pjesma.favorit">DA</span>
+                                <span *ngIf="!pjesma.favorit">NE</span>
                             </label>
                         </div>
                     </div>
@@ -114,12 +113,10 @@
                   <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="kategorije" >Kategorija</label>
                     <div class="col-md-9">
-                      <select id="kategorije" name="kategorije" class="form-control" [(ngModel)]="pjesma.kategorijaID" required  #statusPredmeta="ngModel">
+                      <select id="kategorije" name="kategorije" class="form-control" [(ngModel)]="pjesma.kategorijaID"   #kategorijee="ngModel">
                         <option value="" selected >--Odaberite--</option>
-                        <option value="{{k.kategorijaID}" *ngFor="let k of kategorije ">{{k.nazivKategorije}} </option>
-                        
+                        <option value="{{k.kategorijaID}" *ngFor="let k of kategorije ">{{k.nazivKategorije}} </option>             
                       </select>
-                   
                     </div>
                   </div> 
                 </form>
@@ -127,7 +124,7 @@
         </div>
     </div>
     <div class="modal-footer">        
-         <button type="submit" class="btn btn-sm btn-primary"  (click)="save()"  [disabled]="!createForm.valid"><i class="fa fa-dot-circle-o"></i> Sačuvaj</button>   
+         <button type="submit" class="btn btn-sm btn-primary"  (click)="save()"  ><i class="fa fa-dot-circle-o"></i> Sačuvaj</button>   
          <button type="reset" class="btn btn-sm btn-danger" (click)="modal.close('Save click')"><i class="fa fa-ban"></i> Odustani</button>
         </div> 
 </ng-template>
