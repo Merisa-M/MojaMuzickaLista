@@ -19,15 +19,15 @@ export class PjesmaComponent implements OnInit {
     this.GetAll();
     this.GetKategorije();
   }
-  PjesmeList:any=[];
+  PjesmeList:any[]=[];
   isDtInitialized:boolean = false;
-  pjesma:any=[];
+  pjesma:any={};
   closeResult: string;
   modalOptions:NgbModalOptions;
  
 
   open(content:any) {
-    this.PjesmeList={};
+    this.pjesma={};
     this.modalService.open(content, this.modalOptions).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -45,13 +45,11 @@ export class PjesmaComponent implements OnInit {
   }
   GetAll() {
     this.SharedService.getPjesmeList().subscribe(data => {
-      console.log(data);
       this.PjesmeList = data;
     });
   }
   GetKategorije() {
     this.SharedService.getKategorije().subscribe(data => {
-      console.log(data);
       this.kategorije = data;
     });
   }
@@ -73,22 +71,30 @@ export class PjesmaComponent implements OnInit {
   }
  
   save() {
+    
 
+    var d1 = new Date(this.pjesma.datumUnos);
+    this.pjesma.datumUnos=d1.toDateString();
+    var d2 = new Date(this.pjesma.datumEditovanja);
+    this.pjesma.datumEditovanja=d2.toDateString();
 
     if(this.pjesma.pjesmaID){
 
       this.spinner.show();
 
-      
+      console.log(this.pjesma.pjesmaID);
+     
+      this.pjesma.kategorijaID=1;
+      console.log(this.pjesma);
       this.SharedService
-          .update(this.pjesma.pjesmaID, this.pjesma)
+          .update(this.pjesma.pjesmaID,this.pjesma)
           .pipe(first())
           .subscribe(
             (data) => {
 
               this.GetAll();
 
-              this.PjesmeList = {};
+              this.pjesma = {};
 
               
              this.spinner.hide();
@@ -111,7 +117,7 @@ else{
   this.spinner.show();
 
     this.SharedService
-        .save("pjesma", this.pjesma)
+        .save(this.pjesma)
         .pipe(first())
         .subscribe(
           (data) => {
@@ -129,8 +135,5 @@ else{
           }
         );
     }
-  
   }
-
-
 }

@@ -20,21 +20,13 @@ export class SharedService {
       return this.http.get<any>(this.apiUrl+'/Kategorije');
     }
      
-      // updatePjesma(val:any){
-      //   return this.http.put(this.APIUrl+'/Pjesme',val);
-      // }
-      // delete(url: string, id: number) {
-      //   return this.http.delete(`${environment.apiUrl}${url}/${id}`);
-      // }
       delete(val:any){
         return this.http.delete(this.apiUrl+'/Pjesme/'+val);
       }
-      save(url: string, order: any) {
-        return this.http.post(this.apiUrl+'/Pjesme/', order);
-       }
-      
-       update(url: string, order: any) {
-         return this.http.put(`${environment.apiUrl}${url}`, order);
-       }
-      
+       update( id: any, order: any) {
+        return this.http.put(this.apiUrl+'/Pjesme/'+id, order);
+      }
+      save(order: any) {
+        return this.http.post<any>(this.apiUrl + '/Pjesme', order);
+      }
 }
