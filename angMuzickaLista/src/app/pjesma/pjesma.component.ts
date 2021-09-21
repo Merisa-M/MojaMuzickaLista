@@ -11,7 +11,7 @@ import { Subject } from 'rxjs';
   styleUrls: ['./pjesma.component.css']
 })
 export class PjesmaComponent implements OnInit {
-  kategorije: any[] = [];
+  kategorijee: any[] = [];
   constructor(private SharedService:  SharedService,  private modalService:NgbModal,
     private toastr: ToastrService, private spinner: NgxSpinnerService) { }
     
@@ -52,7 +52,7 @@ export class PjesmaComponent implements OnInit {
   }
   GetKategorije() {
     this.SharedService.getKategorije().subscribe(data => {
-      this.kategorije = data;
+      this.kategorijee = data;
     });
   }
   deletePut(item:any){

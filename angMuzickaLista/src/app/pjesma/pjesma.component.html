@@ -117,9 +117,9 @@
                   <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="kategorije" >Kategorija</label>
                     <div class="col-md-9">
-                      <select id="kategorije" name="kategorije" class="form-control" [(ngModel)]="pjesma.kategorijaID" required  #statusPredmeta="ngModel">
+                      <select id="kategorije" name="kategorije" class="form-control" [(ngModel)]="pjesma.kategorijaID" required  #kategorije="ngModel">
                         <option value="" selected >--Odaberite--</option>
-                        <option value="{{k.kategorijaID}}" *ngFor="let k of kategorije ">{{k.nazivKategorije}} </option>              
+                        <option value="{{k.kategorijaID}}" *ngFor="let k of kategorijee ">{{k.nazivKategorije}} </option>              
                       </select>                  
                     </div>
                   </div> 
