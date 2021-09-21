@@ -4,7 +4,7 @@ import { SharedService } from '../shared.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from "ngx-spinner";
 import { first } from 'rxjs/operators';
-
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-pjesma',
   templateUrl: './pjesma.component.html',
@@ -24,6 +24,8 @@ export class PjesmaComponent implements OnInit {
   pjesma:any={};
   closeResult: string;
   modalOptions:NgbModalOptions;
+  dtTrigger: Subject<any> = new Subject();
+
  
 
   open(content:any) {

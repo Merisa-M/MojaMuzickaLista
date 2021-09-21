@@ -49,6 +49,8 @@
 
 <ng-template #mymodal let-modal>
     <div class="modal-header">
+        <h4 class="modal-title" *ngIf="!pjesma.pjesmaID"  id="modal-basic-title">Dodaj novu pjesmu</h4>
+        <h4 class="modal-title" *ngIf="pjesma.pjesmaID"   id="modal-basic-title">Uredi pjesmu</h4>
      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span></button>
     </div>
