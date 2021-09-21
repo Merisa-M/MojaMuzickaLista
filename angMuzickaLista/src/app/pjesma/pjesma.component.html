@@ -76,14 +76,14 @@
                     <label class="col-md-3 col-form-label" for="url">URL</label>
                     <div class="col-md-9">
                         <input type="text" id="url" name="url" class="form-control" placeholder="url pjesme"
-                        [(ngModel)]="pjesma.url"#url="ngModel" [ngModelOptions]="{standalone: true}">     
+                        [(ngModel)]="pjesma.url" #url="ngModel">     
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="ocjena">Ocjena</label>
                     <div class="col-md-9">
-                        <input type="number" min="1" min="5" id="ocjena" name="ocjena" class="form-control" placeholder="ocjena"
-                        [(ngModel)]="pjesma.ocjena" #ocjena="ngModel" [ngModelOptions]="{standalone: true}">
+                        <input type="number" min="1" max="5" id="ocjena" name="ocjena" class="form-control" placeholder="ocjena"
+                        [(ngModel)]="pjesma.ocjena" #ocjena="ngModel">
                   </div>
                 </div>
                 <div class="form-group row">
@@ -115,10 +115,10 @@
                 </div>
     
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="kategorije" >Kategorija</label>
+                    <label class="col-md-3 col-form-label" for="kategorije">Kategorija</label>
                     <div class="col-md-9">
-                      <select id="kategorije" name="kategorije" class="form-control" [(ngModel)]="pjesma.kategorijaID" required  #kategorije="ngModel">
-                        <option value="" selected >--Odaberite--</option>
+                      <select id="kategorije" name="kategorije" class="form-control" [(ngModel)]="pjesma.kategorijaID" #kategorije="ngModel">
+                        <option value="" selected>--Odaberite--</option>
                         <option value="{{k.kategorijaID}}" *ngFor="let k of kategorijee ">{{k.nazivKategorije}} </option>              
                       </select>                  
                     </div>

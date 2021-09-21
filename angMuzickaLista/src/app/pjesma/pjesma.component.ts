@@ -24,9 +24,6 @@ export class PjesmaComponent implements OnInit {
   pjesma:any={};
   closeResult: string;
   modalOptions:NgbModalOptions;
-  dtTrigger: Subject<any> = new Subject();
-
- 
 
   open(content:any) {
     this.pjesma={};
