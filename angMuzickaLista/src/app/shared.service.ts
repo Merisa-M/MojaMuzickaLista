@@ -27,6 +27,6 @@ export class SharedService {
         return this.http.put(this.apiUrl+'/Pjesme/'+id, order);
       }
       save(order: any) {
-        return this.http.post<any>(this.apiUrl+'/Pjesme', order);
+        return this.http.post(this.apiUrl+'/Pjesme', order);
       }
 }
