@@ -38,6 +38,7 @@
                 <td>{{ dataItem.datumEditovanja | date: 'dd-MM-yyyy' }}</td>
                 <td>{{dataItem.kategorije.nazivKategorije}}</td>
                 <td id="ikonice"> 
+
                     <a href="#"  style="margin-right: 5px;"  (click)="openEditModal(mymodal,dataItem)"> <i class="material-icons" style="font-size: 24px;color:#FFC107;">&#xE254;</i></a>
                     <a herf="#"  (click)="deletePut(dataItem)"> <i class="material-icons" style="font-size: 24px;color:#E34724;">&#xE872;</i> </a><td>
             </tr>
@@ -79,7 +80,7 @@
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="ocjena">Ocjena</label>
                     <div class="col-md-9">
-                        <input type="range" min="1" max="5" id="ocjena" name="ocjena" class="form-control" placeholder="ocjena"
+                        <input type="number" min="1" min="5" id="ocjena" name="ocjena" class="form-control" placeholder="ocjena"
                         [(ngModel)]="pjesma.ocjena" #ocjena="ngModel" [ngModelOptions]="{standalone: true}">
                   </div>
                 </div>
@@ -109,7 +110,8 @@
                         <input id="datumEditovanja" name="datumEditovanja" class="form-control"
                             placeholder="Datum editovanja"[(ngModel)]="pjesma.datumEditovanja" #datumEditovanja="ngModel">
                     </div>
-                </div>  
+                </div>
+    
                   <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="kategorije" >Kategorija</label>
                     <div class="col-md-9">
