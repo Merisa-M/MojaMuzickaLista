@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { environment } from 'src/environments/environment'; 
+import {HttpClient, HttpHeaders} from '@angular/common/http'; 
 import {Observable} from 'rxjs';
+import { environment } from 'src/environments/environment';
 @Injectable({
     providedIn: 'root'
   })
@@ -22,12 +22,12 @@ export class SharedService {
       return this.http.get<any>(this.apiUrl+'/Kategorije');
     }
       delete(val:any){
-        return this.http.delete(this.apiUrl+'/Pjesme/'+val);
+        return this.http.delete(this.apiUrl+'/Pjesme/'+ val);
       }
        update( id: any, order: any) {
         return this.http.put(this.apiUrl+'/Pjesme/'+id, order);
       }
       save(order: any) {
-        return this.http.post<any>(this.apiUrl + '/Pjesme', order);
+        return this.http.post<any>(this.apiUrl+'/Pjesme', order);
       }
 }

@@ -13,7 +13,7 @@ namespace MojaMuzickaLista.Model
         public int Ocjena { get; set; }
         public bool? Favorit { get; set; }
         public DateTime DatumUnos { get; set; }
-       // public  int KategorijaID { get; set; }
+        public  int KategorijaID { get; set; }
         public DateTime DatumEditovanja { get; set; }
         public virtual Kategorije Kategorije { get; set; }
     }

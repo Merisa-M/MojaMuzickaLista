@@ -7,9 +7,7 @@ namespace MojaMuzickaLista.Model
 {
     public class PjesmaAddRequest
     {
-  
-        public string NazivPjesme { get; set; }
-    
+        public string NazivPjesme { get; set; }  
         public string NazivIzvodjaca { get; set; }
         public string Url { get; set; }
         public int Ocjena { get; set; }

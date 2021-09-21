@@ -13,8 +13,7 @@ import { first } from 'rxjs/operators';
 export class PjesmaComponent implements OnInit {
   kategorije: any[] = [];
   constructor(private SharedService:  SharedService,  private modalService:NgbModal,
-    private toastr: ToastrService,
-    private spinner: NgxSpinnerService) { }
+    private toastr: ToastrService, private spinner: NgxSpinnerService) { }
     
     ngOnInit(): void {
     this.GetAll();
@@ -94,7 +93,7 @@ export class PjesmaComponent implements OnInit {
           );
     }
 else{
-  this.spinner.show();
+     this.spinner.show();
 
     this.SharedService
         .save(this.pjesma)
