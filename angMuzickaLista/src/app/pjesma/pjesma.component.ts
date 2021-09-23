@@ -69,11 +69,10 @@ export class PjesmaComponent implements OnInit {
   }
  
   save() {
-   this.pjesma.DatumUnos= new Date();
-   this.pjesma.DatumEditovanja= new Date();
+  
     if(this.pjesma.pjesmaID){
       this.spinner.show();
-     
+   this.pjesma.DatumEditovanja= new Date();
       this.SharedService
           .update(this.pjesma.pjesmaID, this.pjesma)
           .pipe(first())
@@ -94,8 +93,9 @@ export class PjesmaComponent implements OnInit {
     }
 else{
      this.spinner.show();
-
-    this.SharedService
+     this.pjesma.DatumUnos= new Date();
+     this.pjesma.DatumEditovanja= new Date();
+      this.SharedService
         .save(this.pjesma)
         .pipe(first())
         .subscribe(
