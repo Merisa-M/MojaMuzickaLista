@@ -15,6 +15,6 @@ namespace MojaMuzickaLista.Model
         public DateTime DatumUnos { get; set; }
         public  int KategorijaID { get; set; }
         public DateTime DatumEditovanja { get; set; }
-        public virtual Kategorije Kategorije { get; set; }
+        public virtual Kategorije Kategorije  { get; set; }
     }
 }

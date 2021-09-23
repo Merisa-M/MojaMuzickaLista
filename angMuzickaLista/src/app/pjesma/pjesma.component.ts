@@ -69,7 +69,8 @@ export class PjesmaComponent implements OnInit {
   }
  
   save() {
-  
+   this.pjesma.DatumUnos= new Date();
+   this.pjesma.DatumEditovanja= new Date();
     if(this.pjesma.pjesmaID){
       this.spinner.show();
      
@@ -77,8 +78,9 @@ export class PjesmaComponent implements OnInit {
           .update(this.pjesma.pjesmaID, this.pjesma)
           .pipe(first())
           .subscribe(
-            (data) => {
+            (data) => {    
             this.pjesma = {};  
+            this.GetAll();
             this.spinner.hide();
             this.modalService.dismissAll();
             this.toastr.success("Data is successfully saved!", "Success!");
